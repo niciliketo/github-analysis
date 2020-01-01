@@ -8,7 +8,7 @@ class PullRequest < ApplicationRecord
       next_page =  @client.last_response.rels[:next].href
       pull_requests.each do |pr|
         # Dont re-process if we already have it...
-        if PullRequest.where(number: pr.number)
+        if PullRequest.where(number: pr.number) > 0
           puts "already recorded PR #{pr.number}"
           exit
         end

@@ -1,13 +1,12 @@
 <h1>Some reports</h1>
 <h2>Overview</h2>
-<% example_pr = @pull_requests[0] %>
-<h4>Params: <%= @query_params %></h4>
-<p>Examples</p>
-<p><a href='?'>Everything</a></p>
-<p><a href='?merged_by=<%= example_pr.merged_by %>'>Merged by <%= example_pr.merged_by %></a></p>
-<p><a href='?milestone=<%= example_pr.milestone %>'>Milestone <%= example_pr.milestone %></a></p>
-<p><a href='?creator=<%= example_pr.creator %>'>Creator <%= example_pr.creator %></a></p>
-<p><a href='?merged_by=<%= example_pr.merged_by %>&milestone=<%= example_pr.milestone %>&creator=<%= example_pr.creator %>'>All of the above</a></p>
+<% if @pull_requests.length > 0 %>
+
+<% else %>
+  <h4>Please generate some data first</h4>
+  <code>  bundle exec bin/rails runner -e <% Rails.env %> 'PullRequest.generate_data'</code>
+<% end %>
+<%= render partial: 'example_queries', locals: { example_pr: @pull_requests[0] } %>
 <h4>Number of PRs: <%= @pull_requests.length %></h4>
 <h2>Pull requests by person</h2>
 <%= pie_chart @pull_requests.group(:merged_by).count, download: true %>
