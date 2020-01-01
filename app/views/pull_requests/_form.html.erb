@@ -1,0 +1,42 @@
+<%= form_with(model: pull_reqest, local: true) do |form| %>
+  <% if pull_reqest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pull_reqest.errors.count, "error") %> prohibited this pull_reqest from being saved:</h2>
+
+      <ul>
+        <% pull_reqest.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creator %>
+    <%= form.text_field :creator %>
+  </div>
+
+  <div class="field">
+    <%= form.label :milestone %>
+    <%= form.text_field :milestone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pr_created_at %>
+    <%= form.text_field :pr_created_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pr_merged_at %>
+    <%= form.datetime_select :pr_merged_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

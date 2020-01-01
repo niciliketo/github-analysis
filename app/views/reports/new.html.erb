@@ -1,0 +1,21 @@
+<h1>Some reports</h1>
+<h2>Overview</h2>
+<% example_pr = @pull_requests[0] %>
+<h4>Params: <%= @query_params %></h4>
+<p>Examples</p>
+<p><a href='?'>Everything</a></p>
+<p><a href='?merged_by=<%= example_pr.merged_by %>'>Merged by <%= example_pr.merged_by %></a></p>
+<p><a href='?milestone=<%= example_pr.milestone %>'>Milestone <%= example_pr.milestone %></a></p>
+<p><a href='?creator=<%= example_pr.creator %>'>Creator <%= example_pr.creator %></a></p>
+<p><a href='?merged_by=<%= example_pr.merged_by %>&milestone=<%= example_pr.milestone %>&creator=<%= example_pr.creator %>'>All of the above</a></p>
+<h4>Number of PRs: <%= @pull_requests.length %></h4>
+<h2>Pull requests by person</h2>
+<%= pie_chart @pull_requests.group(:merged_by).count, download: true %>
+<h2>Pull requests by milestone</h2>
+<%= pie_chart @pull_requests.group(:milestone).count %>
+<h2>Pull requests merged over time<h2>
+<%= line_chart @pull_requests.group_by_week(:pr_merged_at).count  %>
+<%#= line_chart @pull_requests.group_by(&:creator).each{|pr| { name: pr[0], data: pr[1].group_by_week(&:pr_created_at).count } } %>
+<%#= render 'form', report: @report %>
+
+<%#= link_to 'Back', reports_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 
+  creator: 
+  milestone: 
+  pr_created_at: 
+  pr_merged_at: 2019-12-31 17:53:48
+
+two:
+  number: 
+  creator: 
+  milestone: 
+  pr_created_at: 
+  pr_merged_at: 2019-12-31 17:53:48

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @pull_request.number %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @pull_request.creator %>
+</p>
+
+<p>
+  <strong>Milestone:</strong>
+  <%= @pull_request.milestone %>
+</p>
+
+<p>
+  <strong>Pr created at:</strong>
+  <%= @pull_request.pr_created_at %>
+</p>
+
+<p>
+  <strong>Pr merged at:</strong>
+  <%= @pull_request.pr_merged_at %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%=h JSON.pretty_generate(@pull_request.data) %>
+</p>
+
+<%= link_to 'Edit', edit_pull_request_path(@pull_request) %> |
+<%= link_to 'Back', pull_requests_path %>
