@@ -61,3 +61,6 @@ gem 'chartkick'
 gem 'groupdate'
 # Scheduling
 gem 'whenever'
+# Users
+gem 'devise'
+gem 'omniauth-github'

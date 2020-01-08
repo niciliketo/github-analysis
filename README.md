@@ -17,7 +17,20 @@ To get started
 ...or import it as a one-time thing
 `rails runner 'PullRequest.generate_data'`
 
+* Create a github application
+(this is used to authenticate users)
+https://developer.github.com/apps/building-github-apps/creating-a-github-app/
+Save the credentials in the credentials file
+`EDITOR="code --wait" rails credentials:edit`
+Format this way:
+`````
+github_oath_app:
+  client_id: '<CLIENT_ID_FROM_GITHUB>'
+  client_secret: '<CLIENT_SECRET_FROM_GITHUB>'
+  scope: 'user:email'
+
+`````
 * Run server
 `rails s`
 
-* Visit `http://localhost:3000/reports/new` to see some reports
+* Visit `http://localhost:3000/reports/new` to login and see some reports
