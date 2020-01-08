@@ -1,4 +1,5 @@
 class PullRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_pull_request, only: [:show, :edit, :update, :destroy]
 
   # GET /pull_requests
