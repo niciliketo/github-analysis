@@ -17,13 +17,9 @@ jobs:
         image: redis
         ports: ['6379:6379']
         options: --entrypoint redis-server
-
+    container:
+      image: ruby:2.6.5
     steps:
-      - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.5
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install
