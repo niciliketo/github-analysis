@@ -30,5 +30,5 @@
   <%=h JSON.pretty_generate(@pull_request.data) %>
 </p>
 
-<%= link_to 'Edit', edit_pull_request_path(@pull_request) %> |
-<%= link_to 'Back', pull_requests_path %>
+<%= link_to 'Edit', edit_repo_pull_request_path(@repo, @pull_request) %> |
+<%= link_to 'Back', repo_pull_requests_path(@repo) %>

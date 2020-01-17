@@ -19,5 +19,5 @@
 
 # Learn more: http://github.com/javan/whenever
 every :hour do
-  runner "PullRequest.generate_data"
+  runner "Repo.generate_data"
 end

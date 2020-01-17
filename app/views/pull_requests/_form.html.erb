@@ -1,10 +1,10 @@
-<%= form_with(model: pull_reqest, local: true) do |form| %>
-  <% if pull_reqest.errors.any? %>
+<%= form_with(model: @pull_request, url: [@repo, @pull_request], local: true) do |form| %>
+  <% if pull_request.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(pull_reqest.errors.count, "error") %> prohibited this pull_reqest from being saved:</h2>
+      <h2><%= pluralize(pull_request.errors.count, "error") %> prohibited this pull_reqest from being saved:</h2>
 
       <ul>
-        <% pull_reqest.errors.full_messages.each do |message| %>
+        <% pull_request.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

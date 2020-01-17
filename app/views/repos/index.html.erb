@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Repos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Full Name</th>
+      <th>Public</th>
+      <th>Checked At</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @repos.each do |repo| %>
+      <tr>
+        <td><%= repo.user.name %></td>
+        <td><%= repo.full_name %></td>
+        <td><%= repo.public %></td>
+        <td><%= repo.checked_at %></td>
+        <td><%= link_to 'Show', repo %></td>
+        <td><%= link_to 'PRs', repo_pull_requests_path(repo) %></td>
+        <td><%#= link_to 'Edit', edit_repo_path(repo) %></td>
+        <td><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Repo', new_repo_path %>

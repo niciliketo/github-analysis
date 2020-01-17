@@ -1,0 +1,11 @@
+<h1>New Repo</h1>
+<p><%= @repo.errors.full_messages.first if @repo.errors.any? %></p>
+<ul>
+<% current_user.repos.each do |repo| %>
+  <li><%= render partial: 'form', locals: {full_name: repo.full_name} %></li>
+  <% end %>
+<ul>
+
+
+
+<%= link_to 'Back', repos_path %>
