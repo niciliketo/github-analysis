@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_173146) do
+ActiveRecord::Schema.define(version: 2020_01_11_194302) do
 
   create_table "pull_requests", force: :cascade do |t|
     t.integer "number"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_01_08_173146) do
     t.string "image"
     t.string "name"
     t.string "nickname"
+    t.string "access_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

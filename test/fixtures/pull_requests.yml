@@ -6,6 +6,7 @@ one:
   milestone: 
   pr_created_at: 
   pr_merged_at: 2019-12-31 17:53:48
+  repo: one
 
 two:
   number: 
@@ -13,3 +14,4 @@ two:
   milestone: 
   pr_created_at: 
   pr_merged_at: 2019-12-31 17:53:48
+  repo: two

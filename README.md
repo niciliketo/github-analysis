@@ -27,8 +27,6 @@ Format this way:
 github_oath_app:
   client_id: '<CLIENT_ID_FROM_GITHUB>'
   client_secret: '<CLIENT_SECRET_FROM_GITHUB>'
-  scope: 'user:email'
-
 `````
 * Run server
 `rails s`
