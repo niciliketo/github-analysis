@@ -22,12 +22,25 @@ ActiveRecord::Schema.define(version: 2020_01_08_173146) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.json "data"
+    t.integer "repo_id"
+    t.index ["repo_id"], name: "index_pull_requests_on_repo_id"
   end
 
   create_table "reports", force: :cascade do |t|
     t.json "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "repos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "full_name"
+    t.boolean "public"
+    t.text "data"
+    t.datetime "checked_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_repos_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,4 +60,6 @@ ActiveRecord::Schema.define(version: 2020_01_08_173146) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "pull_requests", "repos"
+  add_foreign_key "repos", "users"
 end
