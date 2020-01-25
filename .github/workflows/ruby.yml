@@ -6,10 +6,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: borales/actions-yarn@v2.0.0
+    - uses: actions/checkout@v2
+    - name: Use Node.js 13.3.0
+      uses: actions/setup-node@v1
       with:
-        cmd: install # will run `yarn install` command
+        node-version: 13.3.0
+    - run: | 
+        npm install
+        npm install -g yarn
     - uses: actions/checkout@master
     - name: Build and test with Rake
       run: |
