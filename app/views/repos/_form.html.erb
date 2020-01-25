@@ -1,0 +1,5 @@
+<% repo = Repo.new(full_name: full_name) %>
+<%= form_with(model: repo, local: true) do |form| %>
+  <%= form.hidden_field :full_name %>
+  <%= form.submit "Create #{full_name}" %>
+<% end %>

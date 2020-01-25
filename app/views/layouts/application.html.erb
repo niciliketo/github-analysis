@@ -11,11 +11,12 @@
 
   <body>
     <ul class="hmenu">
+      <%= render 'menu/application_items' %>
       <%= render 'devise/menu/registration_items' %>
       <%= render 'devise/menu/login_items' %>
     </ul>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p id="notice"><%= flash[:notice] %></p>
+    <p id="alert"><%= flash[:alert] %></p>
     <%= yield %>
   </body>
 </html>

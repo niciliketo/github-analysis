@@ -1,11 +1,17 @@
 class PullRequestsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_repo
   before_action :set_pull_request, only: [:show, :edit, :update, :destroy]
 
   # GET /pull_requests
   # GET /pull_requests.json
   def index
-    @pull_requests = PullRequest.all
+    @query_params = {}
+    @query_params.merge!({milestone: params[:milestone]}) if !params[:milestone].nil?
+    @query_params.merge!({merged_by: params[:merged_by]}) if !params[:merged_by].nil?
+    @query_params.merge!({creator: params[:creator]}) if !params[:creator].nil?
+
+    @pull_requests = @repo.pull_requests.where(@query_params).order(created_at: 'DESC')
   end
 
   # GET /pull_requests/1
@@ -26,10 +32,10 @@ class PullRequestsController < ApplicationController
   # POST /pull_requests.json
   def create
     @pull_request = PullRequest.new(pull_request_params)
-
+    @pull_request.repo = @repo
     respond_to do |format|
       if @pull_request.save
-        format.html { redirect_to @pull_request, notice: 'Pull request was successfully created.' }
+        format.html { redirect_to [@repo, @pull_request], notice: 'Pull request was successfully created.' }
         format.json { render :show, status: :created, location: @pull_request }
       else
         format.html { render :new }
@@ -43,7 +49,7 @@ class PullRequestsController < ApplicationController
   def update
     respond_to do |format|
       if @pull_request.update(pull_request_params)
-        format.html { redirect_to @pull_request, notice: 'Pull request was successfully updated.' }
+        format.html { redirect_to [@repo, @pull_request], notice: 'Pull request was successfully updated.' }
         format.json { render :show, status: :ok, location: @pull_request }
       else
         format.html { render :edit }
@@ -57,7 +63,7 @@ class PullRequestsController < ApplicationController
   def destroy
     @pull_request.destroy
     respond_to do |format|
-      format.html { redirect_to pull_requests_url, notice: 'Pull request was successfully destroyed.' }
+      format.html { redirect_to repo_pull_requests_url(@repo), notice: 'Pull request was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,6 +72,10 @@ class PullRequestsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_pull_request
       @pull_request = PullRequest.find(params[:id])
+    end
+
+    def set_repo
+      @repo = Repo.find(params[:repo_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

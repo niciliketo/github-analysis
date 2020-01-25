@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  full_name: rails/rails
+  public: true
+  data: RailsText
+  checked_at: nil
+
+two:
+  user: two
+  full_name: abcd/private
+  public: false
+  data: ABCDText
+  checked_at: 1.minute.ago

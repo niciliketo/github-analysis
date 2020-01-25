@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_173146) do
+ActiveRecord::Schema.define(version: 2020_01_11_194302) do
 
   create_table "pull_requests", force: :cascade do |t|
     t.integer "number"
@@ -22,12 +22,25 @@ ActiveRecord::Schema.define(version: 2020_01_08_173146) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.json "data"
+    t.integer "repo_id"
+    t.index ["repo_id"], name: "index_pull_requests_on_repo_id"
   end
 
   create_table "reports", force: :cascade do |t|
     t.json "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "repos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "full_name"
+    t.boolean "public"
+    t.text "data"
+    t.datetime "checked_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_repos_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,10 +54,13 @@ ActiveRecord::Schema.define(version: 2020_01_08_173146) do
     t.string "image"
     t.string "name"
     t.string "nickname"
+    t.string "access_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "pull_requests", "repos"
+  add_foreign_key "repos", "users"
 end

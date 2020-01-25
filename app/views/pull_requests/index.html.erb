@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Pull Requests</h1>
-
+<%= render partial: 'query_params', locals: { pull_requests: @pull_requests} %>
 <table>
   <thead>
     <tr>
+      <th>Repo</th>
       <th>Number</th>
       <th>Creator</th>
       <th>Milestone</th>
@@ -17,14 +18,15 @@
   <tbody>
     <% @pull_requests.each do |pull_request| %>
       <tr>
+        <td><%= pull_request.repo&.full_name %></td>
         <td><%= pull_request.number %></td>
         <td><%= pull_request.creator %></td>
         <td><%= pull_request.milestone %></td>
         <td><%= pull_request.pr_created_at %></td>
         <td><%= pull_request.pr_merged_at %></td>
-        <td><%= link_to 'Show', pull_request %></td>
-        <td><%= link_to 'Edit', edit_pull_request_path(pull_request) %></td>
-        <td><%= link_to 'Destroy', pull_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show',  repo_pull_requests_path(@repo, pull_request) %></td>
+        <td><%= link_to 'Edit', edit_repo_pull_request_path(@repo, pull_request) %></td>
+        <td><%= link_to 'Destroy', repo_pull_requests_path(@repo, pull_request), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Pull Request', new_pull_request_path %>
+<%= link_to 'New Pull Request', new_repo_pull_request_path(@repo) %>
