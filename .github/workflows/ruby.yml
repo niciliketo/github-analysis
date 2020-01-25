@@ -11,7 +11,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 13.3.0
-    - run: npm install
+    - run: | 
+        npm install
+        yarn
     - uses: actions/checkout@master
     - name: Build and test with Rake
       run: |
