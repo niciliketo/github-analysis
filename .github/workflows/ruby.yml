@@ -5,24 +5,49 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:11.5
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 13.3.0
-      uses: actions/setup-node@v1
-      with:
-        node-version: 13.3.0
-    - run: | 
-        npm install
-        npm install -g yarn
-    - uses: actions/checkout@master
-    - name: Build and test with Rake
+    - uses: actions/checkout@v1
+
+    - name: Set up RVM
       run: |
+        curl -sSL https://get.rvm.io | bash
+
+    - name: Set up Ruby from .ruby-version
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        rvm install $(cat .ruby-version) --binary
+        rvm --default use $(cat .ruby-version)
+
+    - name: Install PostgreSQL 11 client
+      run: |
+        sudo apt-get -yqq install libpq-dev
+
+    - name: Build App
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        source $HOME/.rvm/scripts/rvm
         gem install bundler
         bundle install --jobs 4 --retry 3
-        NODE_ENV=test bundle exec rails webpacker:compile
-        RAILS_ENV=test bundle exec rake
+        bin/rails db:setup
+
+    - name: Run Tests
       env:
+        PGHOST: localhost
+        PGUSER: postgres
         RAILS_ENV: test
-        NODE_ENV: test  
-    container:
-      image: ruby:2.6.5
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        bundle exec rake test
+        bundle exec rake test:system
+        # or Rspec
+        # bundle exec rspec
