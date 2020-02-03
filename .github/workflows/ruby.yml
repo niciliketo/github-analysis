@@ -1,0 +1,53 @@
+name: Ruby
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:11.5
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install PostgreSQL, chromemium-webdriver
+      run: |
+        sudo apt-get -yqq install libpq-dev chromium-chromedriver
+        
+    - name: Set up RVM
+      run: |
+        curl -sSL https://get.rvm.io | bash
+        
+    - name: Set up Ruby from .ruby-version
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        rvm install $(cat .ruby-version) --binary
+        rvm --default use $(cat .ruby-version)
+        
+    - name: Build App
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bin/rails db:setup
+        bundle exec rails webpacker:install
+    - name: Run Tests
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        source $HOME/.rvm/scripts/rvm
+        bundle exec rake test
+        bundle exec rake test:system
+        # or Rspec
+        # bundle exec rspec
