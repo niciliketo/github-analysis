@@ -17,13 +17,10 @@ jobs:
 
     - name: Install Chrome
       run: |
-        # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        # sudo dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
-        sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
-        sudo echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
-        sudo apt-get update && \
-        sudo apt-get install -y google-chrome-stable && \
-        rm -rf /var/lib/apt/lists/*
+        sudo curl -sS https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - &
+        sudo echo 'deb https://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google.list &
+        sudo DEBIAN_FRONTEND=noninteractive apt-get -yq update
+        sudo apt-get -yqq install google-chrome-stable
 
     - name: Set up RVM
       run: |
