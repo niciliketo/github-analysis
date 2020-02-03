@@ -24,9 +24,9 @@
         <td><%= pull_request.milestone %></td>
         <td><%= pull_request.pr_created_at %></td>
         <td><%= pull_request.pr_merged_at %></td>
-        <td><%= link_to 'Show',  repo_pull_requests_path(@repo, pull_request) %></td>
+        <td><%= link_to 'Show',  repo_pull_request_path(@repo, pull_request) %></td>
         <td><%= link_to 'Edit', edit_repo_pull_request_path(@repo, pull_request) %></td>
-        <td><%= link_to 'Destroy', repo_pull_requests_path(@repo, pull_request), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', repo_pull_request_path(@repo, pull_request), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

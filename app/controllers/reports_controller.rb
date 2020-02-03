@@ -15,12 +15,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   def new
-    @query_params = {}
-    @query_params.merge!({milestone: params[:milestone]}) if !params[:milestone].nil?
-    @query_params.merge!({merged_by: params[:merged_by]}) if !params[:merged_by].nil?
-    @query_params.merge!({creator: params[:creator]}) if !params[:creator].nil?
-    #@report = Report.new
-    @pull_requests = PullRequest.where(@query_params).order(created_at: 'DESC')
+    @report = Report.new
   end
 
   # GET /reports/1/edit

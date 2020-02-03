@@ -6,8 +6,10 @@
 #
 one: 
   email: a@acme.com
+  image: /favicon.ico
 # column: value
 #
 two: 
   email: b@test.com
+  image: /favicon.ico
 # column: value
