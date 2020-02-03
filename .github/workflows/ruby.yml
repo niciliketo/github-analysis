@@ -13,8 +13,8 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v1
     - name: Install Chrome
+    - uses: actions/checkout@v1
       run: |
         sudo curl -sS https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - &
         sudo echo 'deb https://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google.list &
@@ -22,10 +22,8 @@ jobs:
         sudo apt-get -yqq install google-chrome-stable
 
     - name: Install Chromedriver
+    - uses: actions/checkout@v1
     - uses: nanasess/setup-chromedriver@master
-      with:
-        # Optional: do not specify to match Chrome's version
-        # chromedriver-version: '77.0.3865.40'
     - run: |
         export DISPLAY=:99
         chromedriver --url-base=/wd/hub &
