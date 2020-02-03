@@ -1,20 +1,5 @@
-<h1>Some reports</h1>
-<h2>Overview</h2>
-<% if @pull_requests.length > 0 %>
+<h1>New Report</h1>
 
-<% else %>
-  <h4>Please generate some data first</h4>
-  <code>  bundle exec bin/rails runner -e <% Rails.env %> 'PullRequest.generate_data'</code>
-<% end %>
-<%= render partial: 'example_queries', locals: { example_pr: @pull_requests[0] } %>
-<h4>Number of PRs: <%= @pull_requests.length %></h4>
-<h2>Pull requests by person</h2>
-<%= pie_chart @pull_requests.group(:merged_by).count, download: true %>
-<h2>Pull requests by milestone</h2>
-<%= pie_chart @pull_requests.group(:milestone).count %>
-<h2>Pull requests merged over time<h2>
-<%= line_chart @pull_requests.group_by_week(:pr_merged_at).count  %>
-<%#= line_chart @pull_requests.group_by(&:creator).each{|pr| { name: pr[0], data: pr[1].group_by_week(&:pr_created_at).count } } %>
-<%#= render 'form', report: @report %>
+<%= render 'form', report: @report %>
 
-<%#= link_to 'Back', reports_path %>
+<%= link_to 'Back', reports_path %>

@@ -1,8 +1,10 @@
 require "application_system_test_case"
 
 class ReportsTest < ApplicationSystemTestCase
+  include Devise::Test::IntegrationHelpers
   setup do
     @report = reports(:one)
+    sign_in users(:one)
   end
 
   test "visiting the index" do
@@ -13,7 +15,6 @@ class ReportsTest < ApplicationSystemTestCase
   test "creating a Report" do
     visit reports_url
     click_on "New Report"
-
     fill_in "Data", with: @report.data
     click_on "Create Report"
 
@@ -23,8 +24,7 @@ class ReportsTest < ApplicationSystemTestCase
 
   test "updating a Report" do
     visit reports_url
-    click_on "Edit", match: :first
-
+    click_on "Edit", match: :prefer_exact
     fill_in "Data", with: @report.data
     click_on "Update Report"
 

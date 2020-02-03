@@ -1,0 +1,9 @@
+<h1>Hi!</h1>
+<% ActiveRecord::Schema.tables.each do |table| %>
+  <h2><%= table.to_s %></h2>
+  <% ActiveRecord::Schema.columns(table.to_sym).each do |column| %>
+    <ul>
+      <li><%= column.name %> (<%= column.type %>)</li>
+    </ul>
+  <% end %>
+<% end %>

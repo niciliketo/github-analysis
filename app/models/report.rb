@@ -1,5 +1,5 @@
 class Report < ApplicationRecord
   def get_data
-    return "Hi"
+    return "Data will come here"
   end
 end
