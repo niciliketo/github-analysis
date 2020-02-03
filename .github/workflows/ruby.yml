@@ -15,6 +15,16 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Install Chrome
+      run: |
+        # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        # sudo dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+        sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
+        sudo apt-get update && \
+        sudo apt-get install -y google-chrome-stable && \
+        rm -rf /var/lib/apt/lists/*
+
     - name: Set up RVM
       run: |
         curl -sSL https://get.rvm.io | bash
@@ -24,16 +34,6 @@ jobs:
         source $HOME/.rvm/scripts/rvm
         rvm install $(cat .ruby-version) --binary
         rvm --default use $(cat .ruby-version)
-        
-    - name: Install Chrome
-      run: |
-        # wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        # sudo dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-        echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list && \
-        apt-get update && \
-        apt-get install -y google-chrome-stable && \
-        rm -rf /var/lib/apt/lists/*
         
     - name: Install PostgreSQL 11 client
       run: |
