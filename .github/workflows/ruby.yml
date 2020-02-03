@@ -24,14 +24,15 @@ jobs:
         source $HOME/.rvm/scripts/rvm
         rvm install $(cat .ruby-version) --binary
         rvm --default use $(cat .ruby-version)
-
-    - name: Install PostgreSQL 11 client
-      run: |
-        sudo apt-get -yqq install libpq-dev
+        
     - name: Install Chrome
       run: |
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         sudo dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+        
+    - name: Install PostgreSQL 11 client
+      run: |
+        sudo apt-get -yqq install libpq-dev
     - name: Build App
       env:
         PGHOST: localhost
