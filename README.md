@@ -15,9 +15,10 @@ To get started
 * Create cron job (to import new data hourly)
 `whenever --update-crontab`
 ...or import it as a one-time thing
-`rails runner 'PullRequest.generate_data'`
+`rails runner 'Repo.all.each{ |r| r.generate_data }'`
 
 * Create a github application
+NOTE: THIS IS A OAUTH APP (this allows it to get data the user can access)
 (this is used to authenticate users)
 https://developer.github.com/apps/building-github-apps/creating-a-github-app/
 Save the credentials in the credentials file
@@ -32,3 +33,8 @@ github_oath_app:
 `rails s`
 
 * Visit `http://localhost:3000/reports/new` to login and see some reports
+
+
+NOTE WHEN DEPLOYED CHANGE app:
+Homepage URL: https://app.github-reports.com
+Authorization callback URL: https://app.github-reports.com/users/auth/github/callback
