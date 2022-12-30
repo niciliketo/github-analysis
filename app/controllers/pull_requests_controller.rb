@@ -6,15 +6,8 @@ class PullRequestsController < ApplicationController
   # GET /pull_requests
   # GET /pull_requests.json
   def index
-    @query_params = {}
-    @query_params.merge!({milestone: params[:milestone]}) if !params[:milestone].nil?
-    @query_params.merge!({merged_by: params[:merged_by]}) if !params[:merged_by].nil?
-    @query_params.merge!({creator: params[:creator]}) if !params[:creator].nil?
-    @query_params.merge!({creator: params[:creator]}) if !params[:creator].nil?
-
-    @query_params.merge!({pr_merged_at: (params[:pr_merged_at_start].to_date||0.to_date)..(params[:pr_merged_at_end].to_date||DateTime::Infinity.new)}) if !params[:pr_merged_at_start].nil? || !params[:pr_merged_at_end].nil? 
-
-    @pull_requests = @repo.pull_requests.where(@query_params).order(created_at: 'DESC')
+    @search = PullRequestForm.new(pull_request_form_params)
+    @pull_requests = @repo.pull_requests.where(@search.serialize)
   end
 
   # GET /pull_requests/1
@@ -84,5 +77,9 @@ class PullRequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pull_request_params
       params.require(:pull_request).permit(:number, :creator, :milestone, :pr_created_at, :pr_merged_at)
+    end
+
+    def pull_request_form_params
+      params.fetch(:pull_request_form, {}).permit(:number, :creator, :milestone, :pr_created_at, :pr_merged_at_start, :pr_merged_at_end, :merged_by)
     end
 end
