@@ -10,6 +10,9 @@ class PullRequestsController < ApplicationController
     @query_params.merge!({milestone: params[:milestone]}) if !params[:milestone].nil?
     @query_params.merge!({merged_by: params[:merged_by]}) if !params[:merged_by].nil?
     @query_params.merge!({creator: params[:creator]}) if !params[:creator].nil?
+    @query_params.merge!({creator: params[:creator]}) if !params[:creator].nil?
+
+    @query_params.merge!({pr_merged_at: (params[:pr_merged_at_start].to_date||0.to_date)..(params[:pr_merged_at_end].to_date||DateTime::Infinity.new)}) if !params[:pr_merged_at_start].nil? || !params[:pr_merged_at_end].nil? 
 
     @pull_requests = @repo.pull_requests.where(@query_params).order(created_at: 'DESC')
   end

@@ -6,6 +6,18 @@
   <p><a href='?milestone=<%= example_pr.milestone %>'>Milestone <%= example_pr.milestone %></a></p>
   <p><a href='?creator=<%= example_pr.creator %>'>Creator <%= example_pr.creator %></a></p>
   <p><a href='?merged_by=<%= example_pr.merged_by %>&milestone=<%= example_pr.milestone %>&creator=<%= example_pr.creator %>'>All of the above</a></p>
+  <p>
+
+  <%= form_with url: "pull_requests", method: :get do |form| %>
+  Start:
+    <%= form.date_field("pr_merged_at_start") %>
+  End
+    <%= form.date_field("pr_merged_at_end") %>
+    <%= form.submit "Search" %>
+  <% end %>
+
+  
+  </p>
 <% else %>
   <p>No PRs, no examples</>
 <% end %>
