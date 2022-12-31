@@ -1,6 +1,3 @@
-<h4>Params: <%= @search.serialize %></h4>
-
-
   <%= form_with model: @search, url: "pull_requests", method: :get do |form| %>
     <%= form.label 'Milestone'%>
     <%= form.select :milestone, @repo.milestones, { include_blank: true }, { multiple: true } %>
@@ -13,5 +10,9 @@
     <%= form.label 'End' %>
     <%= form.date_field("pr_merged_at_end") %>
     <%= form.submit "Search" %>
-  <% end %>
+
+    <%= link_to 'Clear', repo_pull_requests_path %>
+ <% end %>
+
+
 

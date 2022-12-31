@@ -1,37 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Pull Requests</h1>
-<%= render partial: 'query_params', locals: { pull_requests: @pull_requests} %>
-<table>
-  <thead>
-    <tr>
-      <th>Repo</th>
-      <th>Number</th>
-      <th>Creator</th>
-      <th>Milestone</th>
-      <th>Pr created at</th>
-      <th>Pr merged at</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pull_requests.each do |pull_request| %>
-      <tr>
-        <td><%= pull_request.repo&.full_name %></td>
-        <td><%= pull_request.number %></td>
-        <td><%= pull_request.creator %></td>
-        <td><%= pull_request.milestone %></td>
-        <td><%= pull_request.pr_created_at %></td>
-        <td><%= pull_request.pr_merged_at %></td>
-        <td><%= link_to 'Show',  repo_pull_request_path(@repo, pull_request) %></td>
-        <td><%= link_to 'Edit', edit_repo_pull_request_path(@repo, pull_request) %></td>
-        <td><%= link_to 'Destroy', repo_pull_request_path(@repo, pull_request), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Pull Request', new_repo_pull_request_path(@repo) %>
+<div class='container'>
+  <div class='row'>
+    <p id="notice"><%= notice %></p>
+    <h1>Pull Requests</h1>
+  </div>
+  <div class='row'>
+    <div class='column column-50'>
+      <%= render partial: 'example_queries' %>
+    </div>
+    <div class='column column-50'>
+      <%= render partial: 'query_params', locals: { pull_requests: @pull_requests} %>
+      <%= render partial: 'query_results' %>
+    </div>
+  </div>
+</div>
