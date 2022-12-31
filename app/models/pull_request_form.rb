@@ -36,12 +36,14 @@ class PullRequestForm
   private
 
   def serialize_date_attributes
-    {pr_merged_at: (@pr_merged_at_start||nil)..(@pr_merged_at_end || DateTime::Infinity.new)}
+    { pr_merged_at: (@pr_merged_at_start || nil)..(@pr_merged_at_end || DateTime::Infinity.new) }
   end
 
   def serialize_other_attributes
     res = {}
-    (ATTRS - HELPER_ATTRS).each{|a| res[a] = self.send(a) unless self.send(a).blank?}
+    (ATTRS - HELPER_ATTRS).each do |a|
+      res[a] = send(a) unless send(a).blank? || send(a).all?(&:blank?)
+    end
     res
   end
 end

@@ -12,8 +12,7 @@ class PullRequestsController < ApplicationController
 
   # GET /pull_requests/1
   # GET /pull_requests/1.json
-  def show
-  end
+  def show; end
 
   # GET /pull_requests/new
   def new
@@ -21,8 +20,7 @@ class PullRequestsController < ApplicationController
   end
 
   # GET /pull_requests/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /pull_requests
   # POST /pull_requests.json
@@ -65,21 +63,22 @@ class PullRequestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pull_request
-      @pull_request = PullRequest.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pull_request
+    @pull_request = PullRequest.find(params[:id])
+  end
 
-    def set_repo
-      @repo = Repo.find(params[:repo_id])
-    end
+  def set_repo
+    @repo = Repo.find(params[:repo_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pull_request_params
-      params.require(:pull_request).permit(:number, :creator, :milestone, :pr_created_at, :pr_merged_at)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def pull_request_params
+    params.require(:pull_request).permit(:number, :creator, :milestone, :pr_created_at, :pr_merged_at)
+  end
 
-    def pull_request_form_params
-      params.fetch(:pull_request_form, {}).permit(:number, :creator, :milestone, :pr_created_at, :pr_merged_at_start, :pr_merged_at_end, :merged_by)
-    end
+  def pull_request_form_params
+    params.fetch(:pull_request_form, {}).permit(:number, :pr_created_at, :pr_merged_at_start, :pr_merged_at_end,
+                                                :merged_by, milestone: [], creator: [], merged_by: [])
+  end
 end
