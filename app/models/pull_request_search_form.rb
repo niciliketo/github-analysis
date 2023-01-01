@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class PullRequestForm
+# Form Object for Pull Request Searches
+# This helps us make the view cleaner
+class PullRequestSearchForm
   include ActiveModel::Model
 
   # All our attrs, defined here so we can access programmatically later
@@ -41,6 +43,17 @@ class PullRequestForm
   end
 
   def serialize_other_attributes
+    res = {}
+    (ATTRS - HELPER_ATTRS).each do |a|
+      next if send(a).nil?
+
+      list = send(a)&.reject(&:blank?)
+      res[a] = list unless list.empty?
+    end
+    res
+  end
+
+  def serialize_other_attributes_old
     res = {}
     (ATTRS - HELPER_ATTRS).each do |a|
       res[a] = send(a) unless send(a).blank? || send(a).all?(&:blank?)

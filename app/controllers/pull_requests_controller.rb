@@ -8,7 +8,7 @@ class PullRequestsController < ApplicationController
   # GET /pull_requests
   # GET /pull_requests.json
   def index
-    @search = PullRequestForm.new(pull_request_form_params)
+    @search = PullRequestSearchForm.new(pull_request_search_params)
     @pull_requests = @repo.pull_requests.where(@search.serialize)
   end
 
@@ -80,8 +80,8 @@ class PullRequestsController < ApplicationController
     params.require(:pull_request).permit(:number, :creator, :milestone, :pr_created_at, :pr_merged_at)
   end
 
-  def pull_request_form_params
-    params.fetch(:pull_request_form, {}).permit(:number, :pr_created_at, :pr_merged_at_start, :pr_merged_at_end,
-                                                :merged_by, milestone: [], creator: [], merged_by: [])
+  def pull_request_search_params
+    params.fetch(:pull_request_search_form, {}).permit(:number, :pr_created_at, :pr_merged_at_start, :pr_merged_at_end,
+                                                       :merged_by, milestone: [], creator: [], merged_by: [])
   end
 end
