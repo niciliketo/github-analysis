@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class PullRequestsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_repo
-  before_action :set_pull_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_pull_request, only: %i[show edit update destroy]
 
   # GET /pull_requests
   # GET /pull_requests.json
@@ -63,6 +65,7 @@ class PullRequestsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_pull_request
     @pull_request = PullRequest.find(params[:id])

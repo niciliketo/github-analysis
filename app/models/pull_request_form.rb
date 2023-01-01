@@ -1,13 +1,14 @@
-
+# frozen_string_literal: true
 
 class PullRequestForm
   include ActiveModel::Model
 
   # All our attrs, defined here so we can access programmatically later
-  ATTRS = [:merged_by, :milestone, :creator, :pr_merged_at_start, :pr_merged_at_end]
+  ATTRS = %i[merged_by milestone creator pr_merged_at_start pr_merged_at_end].freeze
   # Not useful for serialization
-  HELPER_ATTRS = [:pr_merged_at_start, :pr_merged_at_end]
+  HELPER_ATTRS = %i[pr_merged_at_start pr_merged_at_end].freeze
   attr_accessor(*ATTRS)
+
   # validates :name, :email, :body, presence: true
 
   def initialize(params = {})
@@ -26,7 +27,7 @@ class PullRequestForm
   def save
     if valid?
       # send email
-      #ContactMailer.message(params).deliver_later
+      # ContactMailer.message(params).deliver_later
       true
     else
       false

@@ -4,14 +4,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Create test-project",
+            "label": "Run webserver",
             "type": "shell",
-            "command": "rails new test-project -G --skip && cd test-project && bundle install"
-        }, 
+            "command": "rails s -b 0.0.0.0"
+        },
         {
-            "label": "Delete test-project",
+            "label": "Run tests",
             "type": "shell",
-            "command": "cd test-project && rm -rf * && rm -f .ruby-version"
-        }, 
-    ], 
+            "command": "rake"
+        },
+    ],
 }

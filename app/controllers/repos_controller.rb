@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ReposController < ApplicationController
-  before_action :set_repo, only: [:show, :edit, :update, :destroy]
+  before_action :set_repo, only: %i[show edit update destroy]
 
   # GET /repos
   # GET /repos.json
@@ -9,8 +11,7 @@ class ReposController < ApplicationController
 
   # GET /repos/1
   # GET /repos/1.json
-  def show
-  end
+  def show; end
 
   # GET /repos/new
   def new
@@ -18,8 +19,7 @@ class ReposController < ApplicationController
   end
 
   # GET /repos/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /repos
   # POST /repos.json
@@ -62,13 +62,14 @@ class ReposController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_repo
-      @repo = Repo.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def repo_params
-      params.require(:repo).permit(:user_id, :full_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_repo
+    @repo = Repo.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def repo_params
+    params.require(:repo).permit(:user_id, :full_name)
+  end
 end
