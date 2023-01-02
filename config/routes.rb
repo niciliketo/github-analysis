@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   resources :repos do
     resources :pull_requests
   end
-  devise_for :users, controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks'
-  }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, 
+                     skip: [:sessions, :registrations]
   # TODO: static pages gem install high_voltage
   root to: 'reports#new'
   resources :reports
+  resources :user_registrations
+  as :user do
+    delete '/sign_out' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
