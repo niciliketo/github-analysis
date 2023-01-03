@@ -1,0 +1,26 @@
+      <!-- Menu toggle -->
+      <a href="#menu" id="menuLink" class="menu-link">
+          <!-- Hamburger icon -->
+          <span></span>
+      </a>
+      <div id="menu">
+        <div class="pure-menu">
+
+          <div class="pure-menu-heading" href="#company">Analysis
+            <% if user_signed_in? %>
+              <%= image_tag(current_user.image, size: 30, alt: "@#{current_user.nickname}" )%>
+            <% end %>
+          </div>
+          <ul class="pure-menu-list">
+            <%= render 'menu/application_items' %>      
+            <%= render 'devise/menu/login_items' %>
+            <!--
+            <li class="pure-menu-item"><a href="#about" class="pure-menu-link">About</a></li>
+            <li class="pure-menu-item menu-item-divided pure-menu-selected">
+              <a href="#" class="pure-menu-link">Services</a>
+            </li>
+            <li class="pure-menu-item"><a href="#contact" class="pure-menu-link">Contact</a></li>
+            -->
+          </ul>
+        </div>
+      </div>

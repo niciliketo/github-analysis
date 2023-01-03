@@ -2,21 +2,23 @@
 <html>
   <head>
     <title>GithubAnalysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <ul class="hmenu">
-      <%= render 'menu/application_items' %>
-      <%= render 'devise/menu/registration_items' %>
-      <%= render 'devise/menu/login_items' %>
-    </ul>
-    <p id="notice"><%= flash[:notice] %></p>
-    <p id="alert"><%= flash[:alert] %></p>
-    <%= yield %>
+    <div id="layout">
+      <%= render 'menu/menu' %>
+
+      <div id="main">
+        <p id="notice"><%= flash[:notice] %></p>
+        <p id="alert"><%= flash[:alert] %></p>
+        <%= yield %>
+      </div>
+    </div>
+        
+    <%= javascript_importmap_tags %>
   </body>
 </html>

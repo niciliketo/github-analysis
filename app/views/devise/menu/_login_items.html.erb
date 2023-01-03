@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
-  <%= button_to('Logout', destroy_user_session_path, method: :delete, data: { turbo: false}) %>        
+  <%= button_to('Logout', destroy_user_session_path, method: :delete, data: { turbo: false}, class: 'pure-button pure-button-primary') %>        
 <% else %>
   <li>
-  <%= button_to('Login with GitHub', user_github_omniauth_authorize_path, method: :post, data: { turbo: false}) %>  
+  <%= button_to('Login with GitHub', user_github_omniauth_authorize_path, method: :post, data: { turbo: false}, class:  'pure-button pure-button-primary') %>  
   </li>
 <% end %>
