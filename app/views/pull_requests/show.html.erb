@@ -27,7 +27,9 @@
 
 <p>
   <strong>Data:</strong>
-  <%=h JSON.pretty_generate(@pull_request.data) %>
+  <pre>
+  <%=h JSON.pretty_generate(JSON.parse(@pull_request.data)) %>
+  </pre>
 </p>
 
 <%= link_to 'Edit', edit_repo_pull_request_path(@repo, @pull_request) %> |
