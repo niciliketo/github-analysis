@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, 
                      skip: [:sessions, :registrations]
   # TODO: static pages gem install high_voltage
-  root to: 'reports#new'
+  root to: 'repos#index'
   resources :reports
   resources :user_registrations
   as :user do
