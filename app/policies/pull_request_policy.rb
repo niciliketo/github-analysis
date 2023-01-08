@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 ##
-# Punit policies for the Repo model
-class RepoPolicy < ApplicationPolicy
+# Punit policies for the PullRequest model
+class PullRequestPolicy < ApplicationPolicy
   attr_reader :user, :repo
 
   def show?
@@ -38,7 +38,7 @@ class RepoPolicy < ApplicationPolicy
 
   private
 
-  def permitted_to_repo
-    @record.user == @user
+  def permitted_to_pull_request
+    @record.repo.user == @user
   end
 end

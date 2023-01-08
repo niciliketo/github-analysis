@@ -2,6 +2,8 @@
 
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    skip_after_action :verify_authorized
+
     def github
       @user = User.from_omniauth(request.env['omniauth.auth'])
       flash[:notice] = @user.errors.full_messages.to_sentence unless @user.valid?

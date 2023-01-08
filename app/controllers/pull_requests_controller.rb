@@ -8,25 +8,32 @@ class PullRequestsController < ApplicationController
   # GET /pull_requests
   # GET /pull_requests.json
   def index
+    authorize @repo, :show?
     @search = PullRequestSearchForm.new(pull_request_search_params)
     @pull_requests = @repo.pull_requests.where(@search.serialize)
   end
 
   # GET /pull_requests/1
   # GET /pull_requests/1.json
-  def show; end
+  def show
+    authorize @pull_request.repo, :show?
+  end
 
   # GET /pull_requests/new
   def new
+    authorize @repo, :show?
     @pull_request = PullRequest.new
   end
 
   # GET /pull_requests/1/edit
-  def edit; end
+  def edit
+    authorize @pull_request.repo, :show?
+  end
 
   # POST /pull_requests
   # POST /pull_requests.json
   def create
+    authorize @repo, :show?
     @pull_request = PullRequest.new(pull_request_params)
     @pull_request.repo = @repo
     respond_to do |format|
@@ -43,6 +50,7 @@ class PullRequestsController < ApplicationController
   # PATCH/PUT /pull_requests/1
   # PATCH/PUT /pull_requests/1.json
   def update
+    authorize @repo, :show?
     respond_to do |format|
       if @pull_request.update(pull_request_params)
         format.html { redirect_to [@repo, @pull_request], notice: 'Pull request was successfully updated.' }
@@ -57,6 +65,7 @@ class PullRequestsController < ApplicationController
   # DELETE /pull_requests/1
   # DELETE /pull_requests/1.json
   def destroy
+    authorize @repo, :show?
     @pull_request.destroy
     respond_to do |format|
       format.html { redirect_to repo_pull_requests_url(@repo), notice: 'Pull request was successfully destroyed.' }

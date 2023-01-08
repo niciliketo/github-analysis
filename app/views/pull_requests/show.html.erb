@@ -28,7 +28,7 @@
 <p>
   <strong>Data:</strong>
   <pre>
-  <%=h JSON.pretty_generate(JSON.parse(@pull_request.data)) %>
+  <%=h JSON.pretty_generate(JSON.parse(@pull_request.data || '{}')) %>
   </pre>
 </p>
 

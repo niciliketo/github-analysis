@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+##
+# Controller for the Repos model
 class ReposController < ApplicationController
   before_action :set_repo, only: %i[show edit update destroy]
 

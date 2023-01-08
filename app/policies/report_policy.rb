@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 ##
-# Punit policies for the Repo model
-class RepoPolicy < ApplicationPolicy
+# Punit policies for the PullRequest model
+class ReportPolicy < ApplicationPolicy
   attr_reader :user, :repo
 
   def show?
-    permitted_to_repo
+    permitted_to_report
   end
 
   def new?
@@ -15,16 +15,16 @@ class RepoPolicy < ApplicationPolicy
 
   # TODO: add auth here?
   def create?
-    permitted_to_repo
+    permitted_to_report
   end
 
   # TODO: add auth here?
   def update?
-    permitted_to_repo
+    permitted_to_report
   end
 
   def destroy?
-    permitted_to_repo
+    permitted_to_report
   end
 
   ##
@@ -32,13 +32,13 @@ class RepoPolicy < ApplicationPolicy
   # TODO: makes this more restrictive
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where('1 = 2')
     end
   end
 
   private
-
-  def permitted_to_repo
-    @record.user == @user
+  # TODO: makes this more restrictive / remove model
+  def permitted_to_report
+    true
   end
 end
