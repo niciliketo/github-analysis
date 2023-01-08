@@ -2,6 +2,8 @@
 
 require 'test_helper'
 
+##
+# Tests for the Repos Controller
 class ReposControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
   setup do

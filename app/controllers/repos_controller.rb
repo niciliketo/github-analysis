@@ -6,26 +6,32 @@ class ReposController < ApplicationController
   # GET /repos
   # GET /repos.json
   def index
-    @repos = Repo.all
+    @repos = policy_scope(Repo)
   end
 
   # GET /repos/1
   # GET /repos/1.json
-  def show; end
+  def show
+    authorize @repo
+  end
 
   # GET /repos/new
   def new
     @repo = Repo.new
+    authorize @repo
   end
 
   # GET /repos/1/edit
-  def edit; end
+  def edit
+    authorize @repo
+  end
 
   # POST /repos
   # POST /repos.json
   def create
     @repo = Repo.new(repo_params)
     @repo.user = current_user
+    authorize @repo
     respond_to do |format|
       if @repo.save
         format.html { redirect_to @repo, notice: 'Repo was successfully created.' }
@@ -40,6 +46,7 @@ class ReposController < ApplicationController
   # PATCH/PUT /repos/1
   # PATCH/PUT /repos/1.json
   def update
+    authorize @repo
     respond_to do |format|
       if @repo.update(repo_params)
         format.html { redirect_to @repo, notice: 'Repo was successfully updated.' }
@@ -54,6 +61,7 @@ class ReposController < ApplicationController
   # DELETE /repos/1
   # DELETE /repos/1.json
   def destroy
+    authorize @repo
     @repo.destroy
     respond_to do |format|
       format.html { redirect_to repos_url, notice: 'Repo was successfully destroyed.' }
