@@ -7,7 +7,8 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    authorize Report
+    @reports = policy_scope(Report)
   end
 
   # GET /reports/1

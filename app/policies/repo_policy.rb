@@ -29,10 +29,10 @@ class RepoPolicy < ApplicationPolicy
 
   ##
   # Scope for the index action
-  # TODO: makes this more restrictive
+  # Only show this users repos
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(user_id: @user)
     end
   end
 

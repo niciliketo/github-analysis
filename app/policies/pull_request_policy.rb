@@ -29,10 +29,11 @@ class PullRequestPolicy < ApplicationPolicy
 
   ##
   # Scope for the index action
-  # TODO: makes this more restrictive
+  # At the moment we really only verify that the user 
+  # has permission on the repo, so not much to do here
   class Scope < Scope
     def resolve
-      scope.all
+      scope
     end
   end
 

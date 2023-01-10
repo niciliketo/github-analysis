@@ -12,8 +12,12 @@ class ApplicationPolicy
     @record = record
   end
 
+  ##
+  # We are ok to index, as long as we are logged in
+  # The logged in check is done at application policy
+  # We will check which records to show in the scope
   def index?
-    false
+    true
   end
 
   def show?

@@ -10,7 +10,7 @@ class PullRequestsController < ApplicationController
   def index
     authorize @repo, :show?
     @search = PullRequestSearchForm.new(pull_request_search_params)
-    @pull_requests = @repo.pull_requests.where(@search.serialize)
+    @pull_requests = policy_scope(PullRequest).where(@search.serialize)
   end
 
   # GET /pull_requests/1

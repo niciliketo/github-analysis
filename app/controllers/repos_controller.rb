@@ -8,6 +8,7 @@ class ReposController < ApplicationController
   # GET /repos
   # GET /repos.json
   def index
+    authorize Repo
     @repos = policy_scope(Repo)
   end
 
