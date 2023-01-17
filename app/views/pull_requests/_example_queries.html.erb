@@ -1,16 +1,16 @@
   <%= form_with model: @search, url: "pull_requests", method: :get, html: { class: 'pure-form pure-form-stacked'} do |form| %>
-    <%= form.label 'Milestone'%>
+    <%= form.label :milestone %>
     <%= form.select :milestone, @repo.milestones, { include_blank: true }, { multiple: true } %>
-    <%= form.label 'Creator' %>
+    <%= form.label :creator %>
     <%= form.select :creator, @repo.creators, { include_blank: true }, { multiple: true }  %>
-    <%= form.label 'Merged By' %>
+    <%= form.label :merged_by %>
     <%= form.select :merged_by, @repo.merged_bys, { include_blank: true }, { multiple: true } %>
-    <%= form.label 'Start' %>
+    <%= form.label :start %>
     <%= form.date_field :pr_merged_at_start %>
-    <%= form.label 'End' %>
+    <%= form.label :end %>
     <%= form.date_field("pr_merged_at_end") %>
-    <%= link_to 'Clear', repo_pull_requests_path %>
-    <%= form.submit "Search", class: 'pure-button pure-button-primary' %>
+    <%= link_to t('actions.clear'), repo_pull_requests_path %>
+    <%= form.submit t('actions.search'), class: 'pure-button pure-button-primary' %>
 
     
  <% end %>

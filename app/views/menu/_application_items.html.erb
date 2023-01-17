@@ -3,7 +3,7 @@
   <%= link_to('Home', root_path, class: 'pure-menu-link') %>
   </li>
   <li class="pure-menu-item">
-    <%= link_to('Repos', repos_path, class: 'pure-menu-link') %>        
+    <%= link_to(t('activerecord.models.repo.other'), repos_path, class: 'pure-menu-link') %>        
   </li>
 <% else %>
 <% end %>

@@ -1,6 +1,6 @@
   <div class='row'>
     <p id="notice"><%= notice %></p>
-    <h1>Pull Requests</h1>
+    <h1><%=t PullRequest.model_name.human(count: @pull_requests.count) %></h1>
   </div>
   <div class='pure-g'>
     <div class='pure-u-1-4'>
