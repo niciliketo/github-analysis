@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  static_pages:
+    home_html: "<h1>GitHub Analsis</h1>
+          <p>Login with GitHub to start analysing your GitHub Pull Requests</p>"
+
