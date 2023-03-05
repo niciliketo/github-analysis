@@ -5,6 +5,8 @@ class Repo < ApplicationRecord
   belongs_to :user
   has_many :pull_requests, dependent: :destroy
 
+  validates :full_name, presence: true
+
   # Go through all the PRs and get the data
   def self.generate_data
     Repo.find_in_batches do |group|

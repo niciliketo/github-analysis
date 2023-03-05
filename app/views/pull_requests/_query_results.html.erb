@@ -4,6 +4,7 @@
       <th><%=t 'activerecord.models.repo.one' %></th>
       <th><%=t 'activemodel.attributes.pull_request_search_form.number' %></th>
       <th><%=t 'activemodel.attributes.pull_request_search_form.creator' %></th>
+      <th><%=t 'activemodel.attributes.pull_request_search_form.name' %></th>
       <th><%=t 'activemodel.attributes.pull_request_search_form.milestone' %></th>
       <th><%=t 'activemodel.attributes.pull_request_search_form.created_at' %></th>
       <th><%=t 'activemodel.attributes.pull_request_search_form.merged_at' %></th>
@@ -17,9 +18,11 @@
         <td><%= pull_request.repo&.full_name %></td>
         <td><%= pull_request.number %></td>
         <td><%= pull_request.creator %></td>
+        <td><%= link_to pull_request.serialized_data.dig(10,1), pull_request.serialized_data.dig(3,1), target: :blank %></td>
         <td><%= pull_request.milestone %></td>
-        <td><%= pull_request.pr_created_at %></td>
-        <td><%= pull_request.pr_merged_at %></td>
+        
+        <td><%= ldate(pull_request.pr_created_at, format: :short) %></td>
+        <td><%= pull_request.pr_merged_at.nil? ? '-' : l(pull_request.pr_merged_at, format: :short) %></td>
         <td><%= link_to 'Show',  repo_pull_request_path(@repo, pull_request) %></td>
         <td><%= link_to 'Edit', edit_repo_pull_request_path(@repo, pull_request) %></td>
         <td><%= link_to 'Destroy', repo_pull_request_path(@repo, pull_request), method: :delete, data: { confirm: 'Are you sure?' } %></td>
