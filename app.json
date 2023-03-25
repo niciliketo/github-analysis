@@ -4,6 +4,12 @@
     "dokku": {
       "predeploy": "yarn; bundle exec rake assets:precompile",
       "postdeploy": "bundle exec rake db:migrate"
+    },
+  },
+  "cron": [
+    {
+      "command": "bundle exec rails runner 'Repo.all.each{ |r| r.generate_data }' -e production",
+      "schedule": "@hourly"
     }
-  }
+  
 }
