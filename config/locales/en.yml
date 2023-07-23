@@ -32,10 +32,10 @@
 en:
   activerecord:
     models:
-      repo: 
+      repo:
         one: Repo
         other: Repos
-      user: 
+      user:
         one: User
         other: Users
       pull_request:
@@ -66,7 +66,8 @@ en:
   reports:
     number_of_prs: Number of PRs
     pull_requests_by_person: Pull requests by person
-    pull_requests_by_milestone: Pull requests by person
+    pull_requests_by_merger: Pull requests by merger
+    pull_requests_by_milestone: Pull requests by milestone
     pull_requests_merged_over_time: Pull requests merged over time
   static_pages:
     home_html: "<h1>GitHub Analsis</h1>
