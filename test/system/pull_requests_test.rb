@@ -1,4 +1,6 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+
+require 'application_system_test_case'
 
 class PullRequestsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
@@ -8,17 +10,17 @@ class PullRequestsTest < ApplicationSystemTestCase
     sign_in(users(:one))
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit repo_pull_requests_url(@repo)
-    assert_text "Number of PRs: 1"
+    assert_text 'Number of PRs: 1'
   end
 
-  test "destroying a Pull request" do
+  test 'destroying a Pull request' do
     visit repo_pull_requests_url(@repo)
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on 'Destroy', match: :first
     end
 
-    assert_text "Pull request was successfully destroyed"
+    assert_text 'Pull request was successfully destroyed'
   end
 end

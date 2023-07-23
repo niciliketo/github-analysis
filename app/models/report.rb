@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Report < ApplicationRecord
   def get_data
-    return "Data will come here"
+    'Data will come here'
   end
 end

@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Repos</h1>
+<h1><%=t Repo.model_name.human(count: @repos.count) %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Full Name</th>
-      <th>Public</th>
-      <th>Checked At</th>
+      <th><%=t 'activerecord.models.user.one' %></th>
+      <th><%=t 'activerecord.attributes.repo.full_name' %></th>
+      <th><%=t 'activerecord.attributes.repo.public' %></th>
+      <th><%=t 'activerecord.attributes.repo.checked_at' %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,10 +20,10 @@
         <td><%= repo.full_name %></td>
         <td><%= repo.public %></td>
         <td><%= repo.checked_at %></td>
-        <td><%= link_to 'Show', repo %></td>
-        <td><%= link_to 'PRs', repo_pull_requests_path(repo) %></td>
+        <td><%= link_to t('actions.show'), repo %></td>
+        <td><%= link_to t('activerecord.models.pull_request.other'), repo_pull_requests_path(repo) %></td>
         <td><%#= link_to 'Edit', edit_repo_path(repo) %></td>
-        <td><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('actions.destroy'), repo, method: :delete, data: { confirm: t('actions.confirm') } %></td>
       </tr>
     <% end %>
   </tbody>

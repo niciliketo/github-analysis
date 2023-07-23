@@ -30,4 +30,46 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      repo:
+        one: Repo
+        other: Repos
+      user:
+        one: User
+        other: Users
+      pull_request:
+        one: Pull Request
+        other: Pull Requests
+    attributes:
+      repo:
+        full_name: Full Name
+        public: Public
+        checked_at: Checked At
+  activemodel:
+    attributes:
+      pull_request_search_form:
+        milestone: 'Milestone'
+        creator: 'Creator'
+        created_at: 'Created At'
+        merged_by: 'Merged By'
+        merged_at: 'Merged At'
+        number: Number
+        start: Start
+        end: End
+  actions:
+    show: Show
+    destroy: Destroy
+    confirm:  'Are you sure?'
+    clear: Clear
+    search: Search
+  reports:
+    number_of_prs: Number of PRs
+    pull_requests_by_person: Pull requests by creator
+    pull_requests_by_merger: Pull requests by merged by
+    pull_requests_by_milestone: Pull requests by milestone
+    pull_requests_merged_over_time: Pull requests merged over time
+  static_pages:
+    home_html: "<h1>GitHub Analsis</h1>
+          <p>Login with GitHub to start analysing your GitHub Pull Requests</p>"
+

@@ -1,11 +1,18 @@
-<h4>Params: <%= @query_params %></h4>
-<p>Examples</p>
-<p><a href='?'>Everything</a></p>
-<% if example_pr %>
-  <p><a href='?merged_by=<%= example_pr.merged_by %>'>Merged by <%= example_pr.merged_by %></a></p>
-  <p><a href='?milestone=<%= example_pr.milestone %>'>Milestone <%= example_pr.milestone %></a></p>
-  <p><a href='?creator=<%= example_pr.creator %>'>Creator <%= example_pr.creator %></a></p>
-  <p><a href='?merged_by=<%= example_pr.merged_by %>&milestone=<%= example_pr.milestone %>&creator=<%= example_pr.creator %>'>All of the above</a></p>
-<% else %>
-  <p>No PRs, no examples</>
-<% end %>
+  <%= form_with model: @search, url: "pull_requests", method: :get, html: { class: 'pure-form pure-form-stacked'} do |form| %>
+    <%= form.label :milestone %>
+    <%= form.select :milestone, @repo.milestones, { include_blank: true }, { multiple: true } %>
+    <%= form.label :creator %>
+    <%= form.select :creator, @repo.creators, { include_blank: true }, { multiple: true }  %>
+    <%= form.label :merged_by %>
+    <%= form.select :merged_by, @repo.merged_bys, { include_blank: true }, { multiple: true } %>
+    <%= form.label :start %>
+    <%= form.date_field :pr_merged_at_start %>
+    <%= form.label :end %>
+    <%= form.date_field("pr_merged_at_end") %>
+    <%= link_to t('actions.clear'), repo_pull_requests_path %>
+    <%= form.submit t('actions.search'), class: 'pure-button pure-button-primary' %>
+
+ <% end %>
+
+
+
