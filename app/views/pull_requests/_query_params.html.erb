@@ -1,9 +1,9 @@
 <h4><%=t 'reports.number_of_prs' %>: <%= pull_requests.total_count %></h4>
 <h2><%=t 'reports.pull_requests_by_merger' %></h2>
-<%= pie_chart pull_requests.group(:merged_by).count, download: true %>
+<%= column_chart pull_requests.group(:merged_by).order(count: :desc).count, download: true %>
 <h2><%=t 'reports.pull_requests_by_person' %></h2>
-<%= pie_chart pull_requests.group(:creator).count, download: true %>
+<%= column_chart pull_requests.group(:creator).order(count: :desc).count, download: true %>
 <h2><%=t 'reports.pull_requests_by_milestone' %></h2>
-<%= pie_chart pull_requests.group(:milestone).count %>
+<%= column_chart pull_requests.group(:milestone).count %>
 <h2><%=t 'reports.pull_requests_merged_over_time' %><h2>
 <%= line_chart pull_requests.group_by_week(:pr_merged_at).count  %>

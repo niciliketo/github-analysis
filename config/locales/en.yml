@@ -65,8 +65,8 @@ en:
     search: Search
   reports:
     number_of_prs: Number of PRs
-    pull_requests_by_person: Pull requests by person
-    pull_requests_by_merger: Pull requests by merger
+    pull_requests_by_person: Pull requests by creator
+    pull_requests_by_merger: Pull requests by merged by
     pull_requests_by_milestone: Pull requests by milestone
     pull_requests_merged_over_time: Pull requests merged over time
   static_pages:
