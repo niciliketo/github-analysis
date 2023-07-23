@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :repos do
     resources :pull_requests
   end
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }, 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' },
                      skip: [:sessions, :registrations]
   # TODO: static pages gem install high_voltage
   root to: 'static_pages#home'
