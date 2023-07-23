@@ -1,4 +1,4 @@
-<h4><%=t 'reports.number_of_prs' %>: <%= pull_requests.length %></h4>
+<h4><%=t 'reports.number_of_prs' %>: <%= pull_requests.total_count %></h4>
 <h2><%=t 'reports.pull_requests_by_person' %></h2>
 <%= pie_chart pull_requests.group(:merged_by).count, download: true %>
 <h2><%=t 'reports.pull_requests_by_milestone' %></h2>

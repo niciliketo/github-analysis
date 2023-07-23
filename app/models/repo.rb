@@ -74,7 +74,7 @@ class Repo < ApplicationRecord
       pull_requests.select('COUNT(pull_requests.id) sum_prs, MIN(pr_merged_at) min_pr_merged_at,'\
                                 ' MAX(pr_merged_at) max_pr_merged_at,'\
                                 ' ARRAY_AGG(DISTINCT(milestone)) milestones, ARRAY_AGG(DISTINCT(merged_by))'\
-                                ' merged_bys, ARRAY_AGG(DISTINCT(creator)) creators').last
+                                ' merged_bys, ARRAY_AGG(DISTINCT(creator)) creators').take
 
   end
 end

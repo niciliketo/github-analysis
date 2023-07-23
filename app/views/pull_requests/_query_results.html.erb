@@ -20,7 +20,7 @@
         <td><%= pull_request.creator %></td>
         <td><%= link_to pull_request.serialized_data.dig(10,1), pull_request.serialized_data.dig(3,1), target: :blank %></td>
         <td><%= pull_request.milestone %></td>
-        
+
         <td><%= ldate(pull_request.pr_created_at, format: :short) %></td>
         <td><%= pull_request.pr_merged_at.nil? ? '-' : l(pull_request.pr_merged_at, format: :short) %></td>
         <td><%= link_to 'Show',  repo_pull_request_path(@repo, pull_request) %></td>
@@ -30,3 +30,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @pull_requests %>

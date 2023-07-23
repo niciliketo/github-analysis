@@ -46,6 +46,8 @@ group :development do
   gem 'spring'
   # Rubocop for nice code
   gem 'rubocop'
+  # TO know
+  gem 'rack-mini-profiler'
 end
 
 group :test do
@@ -80,5 +82,7 @@ gem 'turbo-rails'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
-
+# Authorization
 gem "pundit", "~> 2.3"
+# Pagination
+gem "kaminari"
