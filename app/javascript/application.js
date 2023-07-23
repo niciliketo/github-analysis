@@ -3,4 +3,3 @@ import { Turbo } from "@hotwired/turbo-rails";
 Turbo.session.drive = true;
 import "chartkick";
 import "Chart.bundle";
-import './custom/ui';
