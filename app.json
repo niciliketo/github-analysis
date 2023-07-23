@@ -1,5 +1,5 @@
 {
-  "name": "github-analysis", 
+  "name": "github-analysis",
   "scripts": {
     "dokku": {
       "predeploy": "yarn; bundle exec rake assets:precompile",
@@ -9,7 +9,7 @@
   "cron": [
     {
       "command": "bundle exec rails runner 'Repo.all.each{ |r| r.generate_data }' -e production",
-      "schedule": "@hourly"
+      "schedule": "@daily"
     }
   ]
 }
