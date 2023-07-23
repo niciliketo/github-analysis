@@ -52,15 +52,15 @@ class Repo < ApplicationRecord
   end
 
   def milestones
-    pull_requests_stats.milestones&.split(',')&.sort || []
+    pull_requests_stats.milestones&.compact&.sort || []
   end
 
   def creators
-    pull_requests_stats.creators&.split(',')&.sort || []
+    pull_requests_stats.creators&.compact&.sort || []
   end
 
   def merged_bys
-    pull_requests_stats.merged_bys&.split(',')&.sort || []
+    pull_requests_stats.merged_bys&.compact&.sort || []
   end
 
   private
